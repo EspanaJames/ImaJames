@@ -1,0 +1,11 @@
+C:\Users\james\source\repos\Imajames\Imajames\bin\Debug\Imajames.exe.config
+C:\Users\james\source\repos\Imajames\Imajames\bin\Debug\Imajames.exe
+C:\Users\james\source\repos\Imajames\Imajames\bin\Debug\Imajames.pdb
+C:\Users\james\source\repos\Imajames\Imajames\obj\Debug\Imajames.csproj.AssemblyReference.cache
+C:\Users\james\source\repos\Imajames\Imajames\obj\Debug\Imajames.IMAJAMES.resources
+C:\Users\james\source\repos\Imajames\Imajames\obj\Debug\Imajames.Properties.Resources.resources
+C:\Users\james\source\repos\Imajames\Imajames\obj\Debug\Imajames.csproj.GenerateResource.cache
+C:\Users\james\source\repos\Imajames\Imajames\obj\Debug\Imajames.csproj.CoreCompileInputs.cache
+C:\Users\james\source\repos\Imajames\Imajames\obj\Debug\Imajames.exe
+C:\Users\james\source\repos\Imajames\Imajames\obj\Debug\Imajames.pdb
+C:\Users\james\source\repos\Imajames\Imajames\obj\Debug\Imajames.imageManipulator.resources
