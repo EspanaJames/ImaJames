@@ -44,7 +44,6 @@ namespace Imajames
             this.statusPanel = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
-            this.imageBox = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.toolControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -133,8 +132,34 @@ namespace Imajames
             this.label47 = new System.Windows.Forms.Label();
             this.label48 = new System.Windows.Forms.Label();
             this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.button11 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
+            this.panel15 = new System.Windows.Forms.Panel();
+            this.label79 = new System.Windows.Forms.Label();
+            this.label80 = new System.Windows.Forms.Label();
+            this.label77 = new System.Windows.Forms.Label();
+            this.label78 = new System.Windows.Forms.Label();
+            this.label73 = new System.Windows.Forms.Label();
+            this.label74 = new System.Windows.Forms.Label();
+            this.label69 = new System.Windows.Forms.Label();
+            this.label70 = new System.Windows.Forms.Label();
+            this.label67 = new System.Windows.Forms.Label();
+            this.label68 = new System.Windows.Forms.Label();
+            this.label65 = new System.Windows.Forms.Label();
+            this.label66 = new System.Windows.Forms.Label();
             this.detectionPage = new System.Windows.Forms.TabPage();
+            this.button6 = new System.Windows.Forms.Button();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.label64 = new System.Windows.Forms.Label();
+            this.label55 = new System.Windows.Forms.Label();
+            this.label56 = new System.Windows.Forms.Label();
+            this.label63 = new System.Windows.Forms.Label();
+            this.label57 = new System.Windows.Forms.Label();
+            this.label62 = new System.Windows.Forms.Label();
+            this.label58 = new System.Windows.Forms.Label();
+            this.label61 = new System.Windows.Forms.Label();
+            this.label59 = new System.Windows.Forms.Label();
+            this.label60 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -150,16 +175,18 @@ namespace Imajames
             this.detButton = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
+            this.imageBox = new System.Windows.Forms.PictureBox();
             this.headerPanel = new System.Windows.Forms.Panel();
             this.directorySearcher1 = new System.DirectoryServices.DirectorySearcher();
-            this.panel14 = new System.Windows.Forms.Panel();
-            this.label55 = new System.Windows.Forms.Label();
-            this.label56 = new System.Windows.Forms.Label();
-            this.button6 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
+            this.label71 = new System.Windows.Forms.Label();
+            this.label72 = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip.SuspendLayout();
             this.statusPanel.SuspendLayout();
             this.panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.imageBox)).BeginInit();
             this.panel3.SuspendLayout();
             this.toolControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -186,13 +213,16 @@ namespace Imajames
             this.tabPage7.SuspendLayout();
             this.panel13.SuspendLayout();
             this.tabPage8.SuspendLayout();
+            this.panel15.SuspendLayout();
             this.detectionPage.SuspendLayout();
+            this.panel14.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panel2.SuspendLayout();
             this.toolFlowPanel.SuspendLayout();
             this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imageBox)).BeginInit();
             this.headerPanel.SuspendLayout();
-            this.panel14.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -279,9 +309,9 @@ namespace Imajames
             // 
             this.statusPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(30)))), ((int)(((byte)(40)))));
             this.statusPanel.Controls.Add(this.panel6);
-            this.statusPanel.Controls.Add(this.imageBox);
             this.statusPanel.Controls.Add(this.panel3);
             this.statusPanel.Controls.Add(this.panel2);
+            this.statusPanel.Controls.Add(this.imageBox);
             this.statusPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.statusPanel.Location = new System.Drawing.Point(0, 82);
             this.statusPanel.Name = "statusPanel";
@@ -308,18 +338,6 @@ namespace Imajames
             this.label4.Size = new System.Drawing.Size(87, 20);
             this.label4.TabIndex = 0;
             this.label4.Text = "Processing";
-            // 
-            // imageBox
-            // 
-            this.imageBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(63)))), ((int)(((byte)(91)))));
-            this.imageBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.imageBox.Location = new System.Drawing.Point(445, 34);
-            this.imageBox.Name = "imageBox";
-            this.imageBox.Size = new System.Drawing.Size(989, 858);
-            this.imageBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.imageBox.TabIndex = 2;
-            this.imageBox.TabStop = false;
-            this.imageBox.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // panel3
             // 
@@ -1319,7 +1337,9 @@ namespace Imajames
             // tabPage8
             // 
             this.tabPage8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(63)))), ((int)(((byte)(91)))));
+            this.tabPage8.Controls.Add(this.button11);
             this.tabPage8.Controls.Add(this.button5);
+            this.tabPage8.Controls.Add(this.panel15);
             this.tabPage8.Location = new System.Drawing.Point(4, 29);
             this.tabPage8.Name = "tabPage8";
             this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
@@ -1327,21 +1347,180 @@ namespace Imajames
             this.tabPage8.TabIndex = 7;
             this.tabPage8.Text = "gpPage";
             // 
+            // button11
+            // 
+            this.button11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(75)))), ((int)(((byte)(94)))));
+            this.button11.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button11.ForeColor = System.Drawing.Color.White;
+            this.button11.Location = new System.Drawing.Point(3, 588);
+            this.button11.Margin = new System.Windows.Forms.Padding(10);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(427, 59);
+            this.button11.TabIndex = 19;
+            this.button11.Text = "SCAN OBJECTS";
+            this.button11.UseVisualStyleBackColor = false;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
+            // 
             // button5
             // 
+            this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(75)))), ((int)(((byte)(94)))));
+            this.button5.Dock = System.Windows.Forms.DockStyle.Top;
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.ForeColor = System.Drawing.Color.White;
-            this.button5.Location = new System.Drawing.Point(248, 724);
+            this.button5.Location = new System.Drawing.Point(3, 529);
+            this.button5.Margin = new System.Windows.Forms.Padding(10);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(177, 40);
-            this.button5.TabIndex = 2;
-            this.button5.Text = "PROCESS";
-            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Size = new System.Drawing.Size(427, 59);
+            this.button5.TabIndex = 18;
+            this.button5.Text = "SCAN IMAGE";
+            this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // panel15
+            // 
+            this.panel15.Controls.Add(this.label79);
+            this.panel15.Controls.Add(this.label80);
+            this.panel15.Controls.Add(this.label77);
+            this.panel15.Controls.Add(this.label78);
+            this.panel15.Controls.Add(this.label73);
+            this.panel15.Controls.Add(this.label74);
+            this.panel15.Controls.Add(this.label69);
+            this.panel15.Controls.Add(this.label70);
+            this.panel15.Controls.Add(this.label67);
+            this.panel15.Controls.Add(this.label68);
+            this.panel15.Controls.Add(this.label65);
+            this.panel15.Controls.Add(this.label66);
+            this.panel15.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel15.Location = new System.Drawing.Point(3, 3);
+            this.panel15.Name = "panel15";
+            this.panel15.Size = new System.Drawing.Size(427, 526);
+            this.panel15.TabIndex = 15;
+            // 
+            // label79
+            // 
+            this.label79.AutoSize = true;
+            this.label79.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label79.Location = new System.Drawing.Point(305, 215);
+            this.label79.Name = "label79";
+            this.label79.Size = new System.Drawing.Size(18, 20);
+            this.label79.TabIndex = 15;
+            this.label79.Text = "0";
+            // 
+            // label80
+            // 
+            this.label80.AutoSize = true;
+            this.label80.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label80.Location = new System.Drawing.Point(257, 179);
+            this.label80.Name = "label80";
+            this.label80.Size = new System.Drawing.Size(112, 20);
+            this.label80.TabIndex = 14;
+            this.label80.Text = "Y OF OBJECT";
+            // 
+            // label77
+            // 
+            this.label77.AutoSize = true;
+            this.label77.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label77.Location = new System.Drawing.Point(105, 215);
+            this.label77.Name = "label77";
+            this.label77.Size = new System.Drawing.Size(18, 20);
+            this.label77.TabIndex = 13;
+            this.label77.Text = "0";
+            // 
+            // label78
+            // 
+            this.label78.AutoSize = true;
+            this.label78.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label78.Location = new System.Drawing.Point(58, 179);
+            this.label78.Name = "label78";
+            this.label78.Size = new System.Drawing.Size(112, 20);
+            this.label78.TabIndex = 12;
+            this.label78.Text = "X OF OBJECT";
+            // 
+            // label73
+            // 
+            this.label73.AutoSize = true;
+            this.label73.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label73.Location = new System.Drawing.Point(305, 142);
+            this.label73.Name = "label73";
+            this.label73.Size = new System.Drawing.Size(18, 20);
+            this.label73.TabIndex = 9;
+            this.label73.Text = "0";
+            // 
+            // label74
+            // 
+            this.label74.AutoSize = true;
+            this.label74.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label74.Location = new System.Drawing.Point(230, 106);
+            this.label74.Name = "label74";
+            this.label74.Size = new System.Drawing.Size(157, 20);
+            this.label74.TabIndex = 8;
+            this.label74.Text = "CENTER OF IMAGE";
+            // 
+            // label69
+            // 
+            this.label69.AutoSize = true;
+            this.label69.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label69.Location = new System.Drawing.Point(105, 142);
+            this.label69.Name = "label69";
+            this.label69.Size = new System.Drawing.Size(18, 20);
+            this.label69.TabIndex = 5;
+            this.label69.Text = "0";
+            // 
+            // label70
+            // 
+            this.label70.AutoSize = true;
+            this.label70.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label70.Location = new System.Drawing.Point(30, 106);
+            this.label70.Name = "label70";
+            this.label70.Size = new System.Drawing.Size(173, 20);
+            this.label70.TabIndex = 4;
+            this.label70.Text = "AREA OF THE IMAGE";
+            // 
+            // label67
+            // 
+            this.label67.AutoSize = true;
+            this.label67.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label67.Location = new System.Drawing.Point(304, 64);
+            this.label67.Name = "label67";
+            this.label67.Size = new System.Drawing.Size(18, 20);
+            this.label67.TabIndex = 3;
+            this.label67.Text = "0";
+            // 
+            // label68
+            // 
+            this.label68.AutoSize = true;
+            this.label68.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label68.Location = new System.Drawing.Point(230, 28);
+            this.label68.Name = "label68";
+            this.label68.Size = new System.Drawing.Size(175, 20);
+            this.label68.TabIndex = 2;
+            this.label68.Text = "NUMBER OF SHAPES";
+            // 
+            // label65
+            // 
+            this.label65.AutoSize = true;
+            this.label65.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label65.Location = new System.Drawing.Point(105, 64);
+            this.label65.Name = "label65";
+            this.label65.Size = new System.Drawing.Size(18, 20);
+            this.label65.TabIndex = 1;
+            this.label65.Text = "0";
+            // 
+            // label66
+            // 
+            this.label66.AutoSize = true;
+            this.label66.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label66.Location = new System.Drawing.Point(30, 28);
+            this.label66.Name = "label66";
+            this.label66.Size = new System.Drawing.Size(166, 20);
+            this.label66.TabIndex = 0;
+            this.label66.Text = "NUMBER OF PIXELS";
             // 
             // detectionPage
             // 
             this.detectionPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(63)))), ((int)(((byte)(91)))));
+            this.detectionPage.Controls.Add(this.button12);
             this.detectionPage.Controls.Add(this.button6);
             this.detectionPage.Controls.Add(this.panel14);
             this.detectionPage.Location = new System.Drawing.Point(4, 29);
@@ -1350,6 +1529,142 @@ namespace Imajames
             this.detectionPage.Size = new System.Drawing.Size(433, 786);
             this.detectionPage.TabIndex = 8;
             this.detectionPage.Text = "sdPage";
+            // 
+            // button6
+            // 
+            this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(75)))), ((int)(((byte)(94)))));
+            this.button6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button6.ForeColor = System.Drawing.Color.White;
+            this.button6.Location = new System.Drawing.Point(3, 529);
+            this.button6.Margin = new System.Windows.Forms.Padding(10);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(427, 111);
+            this.button6.TabIndex = 18;
+            this.button6.Text = "DETECT SHAPE";
+            this.button6.UseVisualStyleBackColor = false;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // panel14
+            // 
+            this.panel14.Controls.Add(this.dataGridView1);
+            this.panel14.Controls.Add(this.label72);
+            this.panel14.Controls.Add(this.label71);
+            this.panel14.Controls.Add(this.label64);
+            this.panel14.Controls.Add(this.label55);
+            this.panel14.Controls.Add(this.label56);
+            this.panel14.Controls.Add(this.label63);
+            this.panel14.Controls.Add(this.label57);
+            this.panel14.Controls.Add(this.label62);
+            this.panel14.Controls.Add(this.label58);
+            this.panel14.Controls.Add(this.label61);
+            this.panel14.Controls.Add(this.label59);
+            this.panel14.Controls.Add(this.label60);
+            this.panel14.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel14.Location = new System.Drawing.Point(3, 3);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(427, 526);
+            this.panel14.TabIndex = 15;
+            // 
+            // label64
+            // 
+            this.label64.AutoSize = true;
+            this.label64.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label64.Location = new System.Drawing.Point(89, 210);
+            this.label64.Name = "label64";
+            this.label64.Size = new System.Drawing.Size(18, 20);
+            this.label64.TabIndex = 9;
+            this.label64.Text = "0";
+            // 
+            // label55
+            // 
+            this.label55.AutoSize = true;
+            this.label55.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label55.Location = new System.Drawing.Point(89, 64);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(18, 20);
+            this.label55.TabIndex = 1;
+            this.label55.Text = "0";
+            // 
+            // label56
+            // 
+            this.label56.AutoSize = true;
+            this.label56.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label56.Location = new System.Drawing.Point(14, 28);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(166, 20);
+            this.label56.TabIndex = 0;
+            this.label56.Text = "NUMBER OF PIXELS";
+            // 
+            // label63
+            // 
+            this.label63.AutoSize = true;
+            this.label63.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label63.Location = new System.Drawing.Point(14, 179);
+            this.label63.Name = "label63";
+            this.label63.Size = new System.Drawing.Size(218, 20);
+            this.label63.TabIndex = 8;
+            this.label63.Text = "NUMBER OF RECTANGLES";
+            // 
+            // label57
+            // 
+            this.label57.AutoSize = true;
+            this.label57.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label57.Location = new System.Drawing.Point(223, 28);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(179, 20);
+            this.label57.TabIndex = 2;
+            this.label57.Text = "NUMBER OF CIRCLES";
+            // 
+            // label62
+            // 
+            this.label62.AutoSize = true;
+            this.label62.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label62.Location = new System.Drawing.Point(295, 143);
+            this.label62.Name = "label62";
+            this.label62.Size = new System.Drawing.Size(18, 20);
+            this.label62.TabIndex = 7;
+            this.label62.Text = "0";
+            // 
+            // label58
+            // 
+            this.label58.AutoSize = true;
+            this.label58.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label58.Location = new System.Drawing.Point(298, 65);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(18, 20);
+            this.label58.TabIndex = 3;
+            this.label58.Text = "0";
+            // 
+            // label61
+            // 
+            this.label61.AutoSize = true;
+            this.label61.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label61.Location = new System.Drawing.Point(220, 106);
+            this.label61.Name = "label61";
+            this.label61.Size = new System.Drawing.Size(201, 20);
+            this.label61.TabIndex = 6;
+            this.label61.Text = "NUMBER OF TRIANGLES";
+            // 
+            // label59
+            // 
+            this.label59.AutoSize = true;
+            this.label59.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label59.Location = new System.Drawing.Point(14, 106);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(189, 20);
+            this.label59.TabIndex = 4;
+            this.label59.Text = "NUMBER OF SQUARES";
+            // 
+            // label60
+            // 
+            this.label60.AutoSize = true;
+            this.label60.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label60.Location = new System.Drawing.Point(89, 141);
+            this.label60.Name = "label60";
+            this.label60.Size = new System.Drawing.Size(18, 20);
+            this.label60.TabIndex = 5;
+            this.label60.Text = "0";
             // 
             // panel8
             // 
@@ -1552,6 +1867,18 @@ namespace Imajames
             this.label2.TabIndex = 0;
             this.label2.Text = "AVAILABLE TOOLS";
             // 
+            // imageBox
+            // 
+            this.imageBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(63)))), ((int)(((byte)(91)))));
+            this.imageBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.imageBox.Location = new System.Drawing.Point(445, 34);
+            this.imageBox.Name = "imageBox";
+            this.imageBox.Size = new System.Drawing.Size(989, 858);
+            this.imageBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imageBox.TabIndex = 2;
+            this.imageBox.TabStop = false;
+            this.imageBox.Click += new System.EventHandler(this.pictureBox2_Click);
+            // 
             // headerPanel
             // 
             this.headerPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(30)))), ((int)(((byte)(40)))));
@@ -1568,50 +1895,71 @@ namespace Imajames
             this.directorySearcher1.ServerPageTimeLimit = System.TimeSpan.Parse("-00:00:01");
             this.directorySearcher1.ServerTimeLimit = System.TimeSpan.Parse("-00:00:01");
             // 
-            // panel14
+            // button12
             // 
-            this.panel14.Controls.Add(this.label55);
-            this.panel14.Controls.Add(this.label56);
-            this.panel14.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel14.Location = new System.Drawing.Point(3, 3);
-            this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(427, 526);
-            this.panel14.TabIndex = 15;
+            this.button12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(75)))), ((int)(((byte)(94)))));
+            this.button12.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button12.ForeColor = System.Drawing.SystemColors.Window;
+            this.button12.Location = new System.Drawing.Point(3, 640);
+            this.button12.Margin = new System.Windows.Forms.Padding(10);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(427, 111);
+            this.button12.TabIndex = 19;
+            this.button12.Text = "DETECT COLOR IN SHAPE";
+            this.button12.UseVisualStyleBackColor = false;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
-            // label55
+            // label71
             // 
-            this.label55.AutoSize = true;
-            this.label55.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label55.Location = new System.Drawing.Point(205, 64);
-            this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(18, 20);
-            this.label55.TabIndex = 1;
-            this.label55.Text = "0";
+            this.label71.AutoSize = true;
+            this.label71.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label71.Location = new System.Drawing.Point(60, 284);
+            this.label71.Name = "label71";
+            this.label71.Size = new System.Drawing.Size(95, 20);
+            this.label71.TabIndex = 11;
+            this.label71.Text = "SHAPE NO.";
             // 
-            // label56
+            // label72
             // 
-            this.label56.AutoSize = true;
-            this.label56.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label56.Location = new System.Drawing.Point(131, 28);
-            this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(166, 20);
-            this.label56.TabIndex = 0;
-            this.label56.Text = "NUMBER OF PIXELS";
+            this.label72.AutoSize = true;
+            this.label72.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label72.Location = new System.Drawing.Point(295, 284);
+            this.label72.Name = "label72";
+            this.label72.Size = new System.Drawing.Size(56, 20);
+            this.label72.TabIndex = 12;
+            this.label72.Text = "ARGB";
             // 
-            // button6
+            // dataGridView1
             // 
-            this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(75)))), ((int)(((byte)(94)))));
-            this.button6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.ForeColor = System.Drawing.Color.White;
-            this.button6.Location = new System.Drawing.Point(3, 529);
-            this.button6.Margin = new System.Windows.Forms.Padding(10);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(427, 128);
-            this.button6.TabIndex = 18;
-            this.button6.Text = "DETECT SHAPE";
-            this.button6.UseVisualStyleBackColor = false;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2});
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dataGridView1.GridColor = System.Drawing.SystemColors.ButtonFace;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 310);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 62;
+            this.dataGridView1.RowTemplate.Height = 28;
+            this.dataGridView1.Size = new System.Drawing.Size(427, 216);
+            this.dataGridView1.TabIndex = 0;
+            // 
+            // Column1
+            // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column1.HeaderText = "SHAPE NO.";
+            this.Column1.MinimumWidth = 8;
+            this.Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column2.HeaderText = "COLOR ARGB";
+            this.Column2.MinimumWidth = 8;
+            this.Column2.Name = "Column2";
+            this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // imageManipulator
             // 
@@ -1635,7 +1983,6 @@ namespace Imajames
             this.statusPanel.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.imageBox)).EndInit();
             this.panel3.ResumeLayout(false);
             this.toolControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -1670,17 +2017,21 @@ namespace Imajames
             this.panel13.ResumeLayout(false);
             this.panel13.PerformLayout();
             this.tabPage8.ResumeLayout(false);
+            this.panel15.ResumeLayout(false);
+            this.panel15.PerformLayout();
             this.detectionPage.ResumeLayout(false);
+            this.panel14.ResumeLayout(false);
+            this.panel14.PerformLayout();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.toolFlowPanel.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imageBox)).EndInit();
             this.headerPanel.ResumeLayout(false);
             this.headerPanel.PerformLayout();
-            this.panel14.ResumeLayout(false);
-            this.panel14.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1725,7 +2076,6 @@ namespace Imajames
         private TabPage tabPage6;
         private TabPage tabPage7;
         private TabPage tabPage8;
-        private Button button5;
         private TabPage detectionPage;
         private TabPage tabPage4;
         private Panel panel1;
@@ -1811,5 +2161,34 @@ namespace Imajames
         private Panel panel14;
         private Label label55;
         private Label label56;
+        private Label label64;
+        private Label label63;
+        private Label label62;
+        private Label label61;
+        private Label label60;
+        private Label label59;
+        private Label label58;
+        private Label label57;
+        private Button button11;
+        private Button button5;
+        private Panel panel15;
+        private Label label65;
+        private Label label66;
+        private Label label67;
+        private Label label68;
+        private Label label79;
+        private Label label80;
+        private Label label77;
+        private Label label78;
+        private Label label73;
+        private Label label74;
+        private Label label69;
+        private Label label70;
+        private Button button12;
+        private DataGridView dataGridView1;
+        private Label label72;
+        private Label label71;
+        private DataGridViewTextBoxColumn Column1;
+        private DataGridViewTextBoxColumn Column2;
     }
 }

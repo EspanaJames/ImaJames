@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -552,6 +553,21 @@ namespace Imajames
             }
             return count;
         }
+        private static (int, int) imageBitMiddleCounter(Bitmap bmp)
+        {
+            
+            int x, y;
+            int xCount=0, yCount=0;
+            for (x = 0; x < bmp.Width; x++)
+            {
+                xCount++;
+                for (y = 0; y < bmp.Height; y++)
+                {
+                    yCount++;
+                }
+            }
+            return (xCount, yCount);
+        }
 
         private void removeEdigtsToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -618,17 +634,33 @@ namespace Imajames
 
         private void button4_Click(object sender, EventArgs e)
         {
+            Bitmap newImage = new Bitmap(imageBox.Image);
+            double averageLumen = luminousityDetector(newImage);
+            for (int cols = 0; cols < newImage.Height; cols++)
+            {
+                for (int rows = 0; rows < newImage.Width; rows++)
+                {
+                    Color pixelColor = newImage.GetPixel(rows, cols);
 
-        }
-        private bool AreColorsSimilar(Color color1, Color color2)
-        {
-            int rDiff = Math.Abs(color1.R - color2.R);
-            int gDiff = Math.Abs(color1.G - color2.G);
-            int bDiff = Math.Abs(color1.B - color2.B);
+                    int luminosity = (int)(0.299 * pixelColor.R + 0.587 * pixelColor.G + 0.114 * pixelColor.B);
 
-            int threshold = 30;
-
-            return rDiff < threshold && gDiff < threshold && bDiff < threshold;
+                    if (averageLumen > luminosity)
+                    {
+                        //Color setColor = newImage.GetPixel(rows, cols);
+                        //int threshold = (int)((setColor.R + setColor.G + setColor.B) / 3);
+                        //int colorR = (int)(setColor.R * 0.3);
+                        //int colorG = (int)(setColor.G * 0.45);
+                        //int colorB = (int)(setColor.B * 0.99);
+                        //Color newColor = Color.FromArgb(colorR, colorG, colorB);
+                        //newImage.SetPixel(rows, cols, newColor);
+                        newImage.SetPixel(rows, cols, Color.Black);
+                    }
+                    else
+                    {
+                    }
+                }
+            }
+            imageBox.Image = newImage;
         }
         private static double luminousityDetector(Bitmap bmp)
         {
@@ -652,15 +684,57 @@ namespace Imajames
             return averageLuminosity;
         }
 
+        //MIDTERMS 
+        public class ShapeProperties
+        {
+            public int Width { get; set; }
+            public int Height { get; set; }
+            public double AspectRatio { get; set; }
+            public int Area { get; set; }
+            public int Perimeter { get; set; }
+            public Rectangle BoundingBox { get; set; }
+        }
+        private Dictionary<string, int> CountColors(Bitmap image)
+        {
+            int width = image.Width;
+            int height = image.Height;
+
+            // Dictionary to store color counts
+            Dictionary<string, int> colorCounts = new Dictionary<string, int>();
+
+            // Loop over each pixel in the image
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    Color pixelColor = image.GetPixel(x, y);
+
+                    // Convert color to a string key (you can use the ARGB value or RGB)
+                    string colorKey = $"{pixelColor.R},{pixelColor.G},{pixelColor.B}";
+
+                    // Increment color count in the dictionary
+                    if (colorCounts.ContainsKey(colorKey))
+                    {
+                        colorCounts[colorKey]++;
+                    }
+                    else
+                    {
+                        colorCounts[colorKey] = 1;
+                    }
+                }
+            }
+
+            return colorCounts;
+        }
         private void button6_Click(object sender, EventArgs e)
         {
             Bitmap image = new Bitmap(imageBox.Image);
             int width = image.Width;
             int height = image.Height;
-            int kernelSize = 3; // Use a 3x3 kernel (can be adjusted)
-            int offset = kernelSize / 2; // Offset for center pixel in the kernel
+            int kernelSize = 3;
+            int offset = kernelSize / 2; 
 
-            Bitmap newImage = new Bitmap(image); // Create a new image for the result
+            Bitmap newImage = new Bitmap(image); 
 
             // Loop over each pixel in the image
             for (int y = offset; y < height - offset; y++)
@@ -704,69 +778,370 @@ namespace Imajames
                 }
             }
 
-            // Now, count the shapes in the segmented image
-            int shapeCount = CountShapes(newImage);
-            label55.Text = shapeCount.ToString();
-            imageBox.Image = newImage; // Display the segmented image
+            int circleCount, squareCount, rectangleCount, triangleCount;
+            (circleCount, squareCount, rectangleCount, triangleCount) = CountShapes(newImage);
+
+            
+
+            label58.Text = circleCount.ToString();
+            label60.Text = squareCount.ToString();
+            label62.Text = triangleCount.ToString();
+            label64.Text = rectangleCount.ToString();
+            label55.Text = (squareCount + circleCount + rectangleCount + triangleCount).ToString();
+
+
+            imageBox.Image = newImage;
+
         }
-        private int CountShapes(Bitmap image)
+        private List<(string shapeType, string generalizedColor)> GetShapeColors(Bitmap image)
         {
+            List<(string shapeType, string generalizedColor)> shapeColors = new List<(string, string)>();
+
             int width = image.Width;
             int height = image.Height;
             bool[,] visited = new bool[width, height];
-            int shapeCount = 0;
 
-            // Loop over every pixel in the image
             for (int y = 0; y < height; y++)
             {
                 for (int x = 0; x < width; x++)
                 {
-                    // If the pixel is black and hasn't been visited yet, it's part of a new shape
                     if (image.GetPixel(x, y).ToArgb() == Color.Black.ToArgb() && !visited[x, y])
                     {
-                        // Perform a flood fill to mark all connected black pixels as visited
-                        FloodFill(image, x, y, visited);
-                        shapeCount++; // Increment shape count
+                        List<Point> shapePixels = new List<Point>();
+                        FloodFillAndRecord(image, x, y, visited, shapePixels);
+
+                        ShapeProperties shape = ExtractShapeFeatures(shapePixels);
+
+                        string shapeType = DetermineShapeType(shape);
+
+                        string generalizedColor = GetAverageArgbColor(shapePixels, image);
+
+                        shapeColors.Add((shapeType, generalizedColor));
                     }
                 }
             }
 
-            return shapeCount;
+            return shapeColors;
         }
-        private void FloodFill(Bitmap image, int x, int y, bool[,] visited)
+        private string GetAverageArgbColor(List<Point> shapePixels, Bitmap image)
+        {
+            if (shapePixels.Count == 0)
+            {
+                return "0, 0, 0, 0";  
+            }
+
+            long totalA = 0, totalR = 0, totalG = 0, totalB = 0;
+            int validPixelCount = 0; 
+
+            foreach (var point in shapePixels)
+            {
+                Color color = image.GetPixel(point.X, point.Y);
+                
+                
+                if (IsBlack(color))
+                {
+                    continue;  // Ignore black pixels (or nearly black pixels)
+                }
+
+                // Accumulate the ARGB values for averaging
+                totalA += color.A;
+                totalR += color.R;
+                totalG += color.G;
+                totalB += color.B;
+                validPixelCount++;  // Increment for valid pixel
+            }
+
+            // If no valid (non-black) pixels were found, return a default color
+            if (validPixelCount == 0)
+            {
+                return "0, 0, 0, 1";  // Transparent black or fallback color
+            }
+
+            // Calculate the average ARGB values for non-black pixels
+            int avgA = (int)(totalA / validPixelCount);
+            int avgR = (int)(totalR / validPixelCount);
+            int avgG = (int)(totalG / validPixelCount);
+            int avgB = (int)(totalB / validPixelCount);
+
+            // Debug: Print the final average color
+
+            // Return the average color as a string
+            return $"{avgA}, {avgR}, {avgG}, {avgB}";
+        }
+
+        private bool IsBlack(Color color)
+        {
+            // Allow for a tolerance in RGB values for "black" pixels (e.g., very dark pixels)
+            return (color.R < 10 && color.G < 10 && color.B < 10);  // Customize this threshold as needed
+        }
+
+        private string DetermineShapeType(ShapeProperties shape)
+        {
+            if (shape.AspectRatio > 0.9 && shape.AspectRatio < 1.1 && shape.Width == shape.Height)
+            {
+                return "Square";
+            }
+            else if (shape.AspectRatio > 0.9 && shape.AspectRatio < 1.1)
+            {
+                return "Circle";
+            }
+            else if (shape.Width != shape.Height)
+            {
+                return "Rectangle";
+            }
+            else
+            {
+                return "Triangle";  
+            }
+        }
+        private void button12_Click(object sender, EventArgs e)
+        {
+            Bitmap newImage = new Bitmap(imageBox.Image);
+            List<(string shapeType, string generalizedColor)> shapeColors = GetShapeColors(newImage);
+
+            // Clear previous rows in DataGridView
+            dataGridView1.Rows.Clear();
+
+            // Add each shape's type and its generalized ARGB color to the DataGridView
+            foreach (var shapeColor in shapeColors)
+            {
+                dataGridView1.Rows.Add(shapeColor.shapeType, shapeColor.generalizedColor);
+            }
+        }
+
+        private (int circleCount, int squareCount, int rectangleCount, int triangleCount) CountShapes(Bitmap image)
+        {
+            int width = image.Width;
+            int height = image.Height;
+            bool[,] visited = new bool[width, height];
+
+            int circleCount = 0;
+            int squareCount = 0;
+            int rectangleCount = 0;
+            int triangleCount = 0;
+
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    if (image.GetPixel(x, y).ToArgb() == Color.Black.ToArgb() && !visited[x, y])
+                    {
+                        List<Point> shapePixels = new List<Point>();
+                        FloodFillAndRecord(image, x, y, visited, shapePixels);
+
+                        ShapeProperties shape = ExtractShapeFeatures(shapePixels);
+
+                        // Classification based on area and aspect ratio
+                        if (shape.AspectRatio > 0.9 && shape.AspectRatio < 1.1 && shape.Width == shape.Height)
+                        {
+                            // It's a square
+                            squareCount++;
+                        }
+                        else if (shape.AspectRatio > 0.9 && shape.AspectRatio < 1.1)
+                        {
+                            // It's a circle (aspect ratio close to 1)
+                            circleCount++;
+                        }
+                        else if (shape.Width != shape.Height)
+                        {
+                            // It's a rectangle
+                            rectangleCount++;
+                        }
+                        else
+                        {
+                            // Triangle (more advanced detection needed)
+                            triangleCount++;
+                        }
+                    }
+                }
+            }
+
+            return (circleCount, squareCount, rectangleCount, triangleCount);
+        }
+
+
+        private void FloodFillAndRecord(Bitmap image, int x, int y, bool[,] visited, List<Point> shapePixels)
         {
             int width = image.Width;
             int height = image.Height;
 
-            // Stack to hold the pixels to be processed (iterative flood fill)
             Stack<Point> stack = new Stack<Point>();
-            stack.Push(new Point(x, y));
+            stack.Push(new Point(x, y));  // Start the flood fill from the initial point.
 
+            // While there are points in the stack
             while (stack.Count > 0)
             {
                 Point point = stack.Pop();
                 int px = point.X;
                 int py = point.Y;
 
-                // If the current pixel is out of bounds or already visited, skip it
                 if (px < 0 || py < 0 || px >= width || py >= height || visited[px, py])
                 {
                     continue;
                 }
 
-                // If the current pixel is black, mark it as visited
                 if (image.GetPixel(px, py).ToArgb() == Color.Black.ToArgb())
                 {
                     visited[px, py] = true;
+                    shapePixels.Add(point);  
 
-                    // Push the neighboring pixels onto the stack
-                    stack.Push(new Point(px + 1, py)); // Right
-                    stack.Push(new Point(px - 1, py)); // Left
-                    stack.Push(new Point(px, py + 1)); // Down
-                    stack.Push(new Point(px, py - 1)); // Up
+                    stack.Push(new Point(px + 1, py));  
+                    stack.Push(new Point(px - 1, py));  
+                    stack.Push(new Point(px, py + 1)); 
+                    stack.Push(new Point(px, py - 1));
                 }
             }
         }
+
+        private ShapeProperties ExtractShapeFeatures(List<Point> shapePixels)
+        {
+            int minX = shapePixels.Min(p => p.X);
+            int maxX = shapePixels.Max(p => p.X);
+            int minY = shapePixels.Min(p => p.Y);
+            int maxY = shapePixels.Max(p => p.Y);
+
+            int area = shapePixels.Count;
+
+            int perimeter = 0;
+            foreach (var point in shapePixels)
+            {
+                int x = point.X;
+                int y = point.Y;
+
+                if (IsEdgePixel(x, y, shapePixels))
+                {
+                    perimeter++;
+                }
+            }
+
+            int width = maxX - minX + 1;
+            int height = maxY - minY + 1;
+            double aspectRatio = (double)width / height;
+
+            return new ShapeProperties
+            {
+                Area = area,
+                Perimeter = perimeter,
+                BoundingBox = new Rectangle(minX, minY, width, height),
+                AspectRatio = aspectRatio
+            };
+        }
+
+        private bool IsEdgePixel(int x, int y, List<Point> shapePixels)
+        {
+            var neighbors = new List<Point>
+    {
+        new Point(x + 1, y),  
+        new Point(x - 1, y),  
+        new Point(x, y + 1), 
+        new Point(x, y - 1)  
+    };
+
+            foreach (var neighbor in neighbors)
+            {
+                if (!shapePixels.Contains(neighbor))
+                {
+                    return true; 
+                }
+            }
+
+            return false;  
+        }
+
+        private bool AreColorsSimilar(Color c1, Color c2)
+        {
+            return Math.Abs(c1.R - c2.R) < 20 && Math.Abs(c1.G - c2.G) < 20 && Math.Abs(c1.B - c2.B) < 20;
+        }
+
+        //IGNORE THIS POINT FORWARD
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            int count = imageBitCounter();
+            double area = (double)count / 1000;
+            label65.Text = count.ToString();
+            label69.Text = area.ToString()+"km^2";
+            int x = 0, y = 0;
+
+            Bitmap centering = new Bitmap(imageBox.Image);
+            int width = centering.Width;
+            int height = centering.Height;
+            int centerX = width / 2;
+            int centerY = height / 2;
+
+            int radius = 2;
+
+            for (int i = centerY - radius; i <= centerY + radius; i++)
+            {
+                for (int j = centerX - radius; j <= centerX + radius; j++)
+                {
+                    double distance = Math.Sqrt(Math.Pow(i - centerY, 2) + Math.Pow(j - centerX, 2));
+
+                    if (distance <= radius)
+                    {
+                        if (i >= 0 && i < centering.Height && j >= 0 && j < centering.Width)
+                        {
+                            centering.SetPixel(j, i, Color.Red);
+                        }
+                    }
+                }
+            }
+            imageBox.Image = centering;
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            Bitmap image = new Bitmap(imageBox.Image);
+            int width = image.Width;
+            int height = image.Height;
+            int kernelSize = 3; 
+            int offset = kernelSize / 2; 
+
+            Bitmap newImage = new Bitmap(image);
+            for (int y = offset; y < height - offset; y++)
+            {
+                for (int x = offset; x < width - offset; x++)
+                {
+                    Color centerColor = image.GetPixel(x, y);
+                    bool allPixelsSimilar = true;
+
+                    for (int ky = -offset; ky <= offset; ky++)
+                    {
+                        for (int kx = -offset; kx <= offset; kx++)
+                        {
+                            Color neighborColor = image.GetPixel(x + kx, y + ky);
+
+                            if (!AreColorsSimilar(centerColor, neighborColor))
+                            {
+                                allPixelsSimilar = false;
+                                break;
+                            }
+                        }
+                        if (!allPixelsSimilar)
+                        {
+                            break;
+                        }
+                    }
+
+                    if (!allPixelsSimilar)
+                    {
+                        for (int ky = -offset; ky <= offset; ky++)
+                        {
+                            for (int kx = -offset; kx <= offset; kx++)
+                            {
+                                newImage.SetPixel(x + kx, y + ky, Color.Black);
+                            }
+                        }
+                    }
+                }
+            }
+            int circleCount, squareCount, rectangleCount, triangleCount;
+            (circleCount, squareCount, rectangleCount, triangleCount) = CountShapes(newImage);
+            label67.Text = (squareCount + circleCount + rectangleCount + triangleCount).ToString();
+
+        }
+
+       
     }
 }
     

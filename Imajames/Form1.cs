@@ -16,12 +16,12 @@ namespace Imajames
         public IMAJAMES()
         {
             InitializeComponent();
-            niggaBarLoad();
+            BarLoad();
             
         }
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         private static extern bool setProcessDPIAware();
-        private void niggaBarLoad()
+        private void BarLoad()
         {
             progressBar1.Value = 0;
             progressBar1.Maximum = 100;
