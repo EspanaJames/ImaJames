@@ -15,42 +15,46 @@ namespace Imajames
     public partial class imageManipulator : Form
     {
         public Bitmap usedImage;
+        public Color pointColor;
+        public int imageX=0,imageY=0;
         public imageManipulator()
         {
             InitializeComponent();
 
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
-        {
-
-        }
-
-        private void homeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog openFile = new OpenFileDialog())
+            
+            if (imageBox.Image != null)
             {
-                if (openFile.ShowDialog() == DialogResult.OK)
+                MouseEventArgs me = (MouseEventArgs)e;
+                Bitmap tempImg = (Bitmap)imageBox.Image;
+                if (tempImg != null)
                 {
-                    imageBox.Image = new Bitmap(openFile.FileName);
-                    usedImage = (Bitmap)imageBox.Image;
+                    
+                    float scaleX = (float)tempImg.Width / imageBox.Width;
+                    float scaleY = (float)tempImg.Height / imageBox.Height;
+
+                    int scaledX = (int)(me.X * scaleX);
+                    int scaledY = (int)(me.Y * scaleY);
+
+                    if (scaledX >= 0 && scaledX < tempImg.Width && scaledY >= 0 && scaledY < tempImg.Height)
+                    {
+                        Color pointColor = tempImg.GetPixel(scaledX, scaledY);
+                        imageX = scaledX;
+                        imageY = scaledY;
+                        label76.Text = pointColor.ToString();
+                    }
+                    else
+                    {
+                        label76.Text = "Mouse out of image bounds";
+                    }
                 }
+
+
             }
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void uploadImageToolStripMenuItem_Click(object sender, EventArgs e)
@@ -591,7 +595,46 @@ namespace Imajames
             //values na i hatag, karon pa ni nako na discover na pwede multiple returns, lamat chatgpt sa idea  
             return (newR, newG, newB);
         }
+        public Bitmap ApplyLaplacianOfGaussian(Bitmap image)
+        {
+            int width = image.Width;
+            int height = image.Height;
+            Bitmap resultImage = new Bitmap(width, height);
 
+            double[,] kernel = new double[,]
+            {
+                { 0, 0, 1, 0, 0 },
+                { 0, 1, 2, 1, 0 },
+                { 1, 2, -16, 2, 1 },
+                { 0, 1, 2, 1, 0 },
+                { 0, 0, 1, 0, 0 }
+            };
+
+            int kernelSize = 5;
+            int offset = kernelSize / 2;
+
+            for (int x = offset; x < width - offset; x++)
+            {
+                for (int y = offset; y < height - offset; y++)
+                {
+                    double sum = 0.0;
+                    for (int dx = -offset; dx <= offset; dx++)
+                    {
+                        for (int dy = -offset; dy <= offset; dy++)
+                        {
+                            Color pixelColor = image.GetPixel(x + dx, y + dy);
+                            int grayValue = pixelColor.R;
+                            sum += grayValue * kernel[dx + offset, dy + offset];
+                        }
+                    }
+
+                    int resultValue = Math.Min(Math.Max((int)sum, 0), 255);
+                    resultImage.SetPixel(x, y, Color.FromArgb(resultValue, resultValue, resultValue));
+                }
+            }
+
+            return resultImage;
+        }
 
         //SCROLL BARS
         private void rBar_Scroll(object sender, EventArgs e)
@@ -1087,6 +1130,11 @@ namespace Imajames
                 }
             }
             imageBox.Image = centering;
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void button11_Click(object sender, EventArgs e)

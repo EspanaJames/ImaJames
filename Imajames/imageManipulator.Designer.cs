@@ -53,13 +53,6 @@ namespace Imajames
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
             this.bnaButton = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label12 = new System.Windows.Forms.Label();
@@ -129,6 +122,8 @@ namespace Imajames
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.button4 = new System.Windows.Forms.Button();
             this.panel13 = new System.Windows.Forms.Panel();
+            this.label76 = new System.Windows.Forms.Label();
+            this.label75 = new System.Windows.Forms.Label();
             this.label47 = new System.Windows.Forms.Label();
             this.label48 = new System.Windows.Forms.Label();
             this.tabPage8 = new System.Windows.Forms.TabPage();
@@ -148,8 +143,14 @@ namespace Imajames
             this.label65 = new System.Windows.Forms.Label();
             this.label66 = new System.Windows.Forms.Label();
             this.detectionPage = new System.Windows.Forms.TabPage();
+            this.button12 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.panel14 = new System.Windows.Forms.Panel();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label72 = new System.Windows.Forms.Label();
+            this.label71 = new System.Windows.Forms.Label();
             this.label64 = new System.Windows.Forms.Label();
             this.label55 = new System.Windows.Forms.Label();
             this.label56 = new System.Windows.Forms.Label();
@@ -178,12 +179,7 @@ namespace Imajames
             this.imageBox = new System.Windows.Forms.PictureBox();
             this.headerPanel = new System.Windows.Forms.Panel();
             this.directorySearcher1 = new System.DirectoryServices.DirectorySearcher();
-            this.button12 = new System.Windows.Forms.Button();
-            this.label71 = new System.Windows.Forms.Label();
-            this.label72 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button13 = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             this.statusPanel.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -192,7 +188,6 @@ namespace Imajames
             this.tabPage1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.panel9.SuspendLayout();
             this.panel4.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -216,13 +211,13 @@ namespace Imajames
             this.panel15.SuspendLayout();
             this.detectionPage.SuspendLayout();
             this.panel14.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel8.SuspendLayout();
             this.panel2.SuspendLayout();
             this.toolFlowPanel.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageBox)).BeginInit();
             this.headerPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -245,7 +240,6 @@ namespace Imajames
             this.homeToolStripMenuItem.Name = "homeToolStripMenuItem";
             this.homeToolStripMenuItem.Size = new System.Drawing.Size(77, 29);
             this.homeToolStripMenuItem.Text = "Home";
-            this.homeToolStripMenuItem.Click += new System.EventHandler(this.homeToolStripMenuItem_Click);
             // 
             // fileToolStripMenuItem
             // 
@@ -446,7 +440,7 @@ namespace Imajames
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(63)))), ((int)(((byte)(91)))));
-            this.tabPage2.Controls.Add(this.panel9);
+            this.tabPage2.Controls.Add(this.button13);
             this.tabPage2.Controls.Add(this.bnaButton);
             this.tabPage2.Controls.Add(this.panel4);
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
@@ -456,92 +450,18 @@ namespace Imajames
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "bnaPage";
             // 
-            // panel9
-            // 
-            this.panel9.Controls.Add(this.label19);
-            this.panel9.Controls.Add(this.label20);
-            this.panel9.Controls.Add(this.label21);
-            this.panel9.Controls.Add(this.label22);
-            this.panel9.Controls.Add(this.label23);
-            this.panel9.Controls.Add(this.label24);
-            this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel9.Location = new System.Drawing.Point(3, 784);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(427, 653);
-            this.panel9.TabIndex = 13;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label19.Location = new System.Drawing.Point(88, 284);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(18, 20);
-            this.label19.TabIndex = 5;
-            this.label19.Text = "0";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label20.Location = new System.Drawing.Point(88, 169);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(18, 20);
-            this.label20.TabIndex = 4;
-            this.label20.Text = "0";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label21.Location = new System.Drawing.Point(14, 237);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(172, 20);
-            this.label21.TabIndex = 3;
-            this.label21.Text = "NUMBER OF WHITES";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label22.Location = new System.Drawing.Point(14, 122);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(172, 20);
-            this.label22.TabIndex = 2;
-            this.label22.Text = "NUMBER OF BLACKS";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label23.Location = new System.Drawing.Point(88, 64);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(18, 20);
-            this.label23.TabIndex = 1;
-            this.label23.Text = "0";
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label24.Location = new System.Drawing.Point(14, 28);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(166, 20);
-            this.label24.TabIndex = 0;
-            this.label24.Text = "NUMBER OF PIXELS";
-            // 
             // bnaButton
             // 
             this.bnaButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(75)))), ((int)(((byte)(94)))));
             this.bnaButton.Dock = System.Windows.Forms.DockStyle.Top;
             this.bnaButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bnaButton.ForeColor = System.Drawing.Color.White;
-            this.bnaButton.Location = new System.Drawing.Point(3, 656);
+            this.bnaButton.Location = new System.Drawing.Point(3, 474);
             this.bnaButton.Margin = new System.Windows.Forms.Padding(10);
             this.bnaButton.Name = "bnaButton";
             this.bnaButton.Size = new System.Drawing.Size(427, 128);
             this.bnaButton.TabIndex = 12;
-            this.bnaButton.Text = "BLACK AND WHITE";
+            this.bnaButton.Text = "PLAIN BLACK AND WHITE";
             this.bnaButton.UseVisualStyleBackColor = false;
             this.bnaButton.Click += new System.EventHandler(this.bnaButton_Click);
             // 
@@ -556,7 +476,7 @@ namespace Imajames
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel4.Location = new System.Drawing.Point(3, 3);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(427, 653);
+            this.panel4.Size = new System.Drawing.Size(427, 471);
             this.panel4.TabIndex = 11;
             // 
             // label12
@@ -1306,6 +1226,8 @@ namespace Imajames
             // 
             // panel13
             // 
+            this.panel13.Controls.Add(this.label76);
+            this.panel13.Controls.Add(this.label75);
             this.panel13.Controls.Add(this.label47);
             this.panel13.Controls.Add(this.label48);
             this.panel13.Dock = System.Windows.Forms.DockStyle.Top;
@@ -1313,6 +1235,26 @@ namespace Imajames
             this.panel13.Name = "panel13";
             this.panel13.Size = new System.Drawing.Size(427, 526);
             this.panel13.TabIndex = 14;
+            // 
+            // label76
+            // 
+            this.label76.AutoSize = true;
+            this.label76.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label76.Location = new System.Drawing.Point(61, 132);
+            this.label76.Name = "label76";
+            this.label76.Size = new System.Drawing.Size(322, 20);
+            this.label76.TabIndex = 3;
+            this.label76.Text = "Click the image to select an area to segment";
+            // 
+            // label75
+            // 
+            this.label75.AutoSize = true;
+            this.label75.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label75.Location = new System.Drawing.Point(142, 96);
+            this.label75.Name = "label75";
+            this.label75.Size = new System.Drawing.Size(142, 20);
+            this.label75.TabIndex = 2;
+            this.label75.Text = "COLOR OF POINT";
             // 
             // label47
             // 
@@ -1530,6 +1472,21 @@ namespace Imajames
             this.detectionPage.TabIndex = 8;
             this.detectionPage.Text = "sdPage";
             // 
+            // button12
+            // 
+            this.button12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(75)))), ((int)(((byte)(94)))));
+            this.button12.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button12.ForeColor = System.Drawing.SystemColors.Window;
+            this.button12.Location = new System.Drawing.Point(3, 640);
+            this.button12.Margin = new System.Windows.Forms.Padding(10);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(427, 111);
+            this.button12.TabIndex = 19;
+            this.button12.Text = "DETECT COLOR IN SHAPE";
+            this.button12.UseVisualStyleBackColor = false;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
+            // 
             // button6
             // 
             this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(75)))), ((int)(((byte)(94)))));
@@ -1565,6 +1522,57 @@ namespace Imajames
             this.panel14.Name = "panel14";
             this.panel14.Size = new System.Drawing.Size(427, 526);
             this.panel14.TabIndex = 15;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2});
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dataGridView1.GridColor = System.Drawing.SystemColors.ButtonFace;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 310);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 62;
+            this.dataGridView1.RowTemplate.Height = 28;
+            this.dataGridView1.Size = new System.Drawing.Size(427, 216);
+            this.dataGridView1.TabIndex = 0;
+            // 
+            // Column1
+            // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column1.HeaderText = "SHAPE NO.";
+            this.Column1.MinimumWidth = 8;
+            this.Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column2.HeaderText = "COLOR ARGB";
+            this.Column2.MinimumWidth = 8;
+            this.Column2.Name = "Column2";
+            this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // label72
+            // 
+            this.label72.AutoSize = true;
+            this.label72.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label72.Location = new System.Drawing.Point(295, 284);
+            this.label72.Name = "label72";
+            this.label72.Size = new System.Drawing.Size(56, 20);
+            this.label72.TabIndex = 12;
+            this.label72.Text = "ARGB";
+            // 
+            // label71
+            // 
+            this.label71.AutoSize = true;
+            this.label71.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label71.Location = new System.Drawing.Point(60, 284);
+            this.label71.Name = "label71";
+            this.label71.Size = new System.Drawing.Size(95, 20);
+            this.label71.TabIndex = 11;
+            this.label71.Text = "SHAPE NO.";
             // 
             // label64
             // 
@@ -1688,7 +1696,6 @@ namespace Imajames
             this.label3.TabIndex = 1;
             this.label3.Text = "Adjust Bars";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // panel2
             // 
@@ -1895,71 +1902,20 @@ namespace Imajames
             this.directorySearcher1.ServerPageTimeLimit = System.TimeSpan.Parse("-00:00:01");
             this.directorySearcher1.ServerTimeLimit = System.TimeSpan.Parse("-00:00:01");
             // 
-            // button12
+            // button13
             // 
-            this.button12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(75)))), ((int)(((byte)(94)))));
-            this.button12.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button12.ForeColor = System.Drawing.SystemColors.Window;
-            this.button12.Location = new System.Drawing.Point(3, 640);
-            this.button12.Margin = new System.Windows.Forms.Padding(10);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(427, 111);
-            this.button12.TabIndex = 19;
-            this.button12.Text = "DETECT COLOR IN SHAPE";
-            this.button12.UseVisualStyleBackColor = false;
-            this.button12.Click += new System.EventHandler(this.button12_Click);
-            // 
-            // label71
-            // 
-            this.label71.AutoSize = true;
-            this.label71.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label71.Location = new System.Drawing.Point(60, 284);
-            this.label71.Name = "label71";
-            this.label71.Size = new System.Drawing.Size(95, 20);
-            this.label71.TabIndex = 11;
-            this.label71.Text = "SHAPE NO.";
-            // 
-            // label72
-            // 
-            this.label72.AutoSize = true;
-            this.label72.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label72.Location = new System.Drawing.Point(295, 284);
-            this.label72.Name = "label72";
-            this.label72.Size = new System.Drawing.Size(56, 20);
-            this.label72.TabIndex = 12;
-            this.label72.Text = "ARGB";
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2});
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dataGridView1.GridColor = System.Drawing.SystemColors.ButtonFace;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 310);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 62;
-            this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(427, 216);
-            this.dataGridView1.TabIndex = 0;
-            // 
-            // Column1
-            // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column1.HeaderText = "SHAPE NO.";
-            this.Column1.MinimumWidth = 8;
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column2.HeaderText = "COLOR ARGB";
-            this.Column2.MinimumWidth = 8;
-            this.Column2.Name = "Column2";
-            this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.button13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(75)))), ((int)(((byte)(94)))));
+            this.button13.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button13.ForeColor = System.Drawing.Color.White;
+            this.button13.Location = new System.Drawing.Point(3, 602);
+            this.button13.Margin = new System.Windows.Forms.Padding(10);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(427, 128);
+            this.button13.TabIndex = 13;
+            this.button13.Text = "THRESHOLDING BLACK AND WHITE";
+            this.button13.UseVisualStyleBackColor = false;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
             // 
             // imageManipulator
             // 
@@ -1989,8 +1945,6 @@ namespace Imajames
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
-            this.panel9.ResumeLayout(false);
-            this.panel9.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.tabPage3.ResumeLayout(false);
@@ -2022,6 +1976,7 @@ namespace Imajames
             this.detectionPage.ResumeLayout(false);
             this.panel14.ResumeLayout(false);
             this.panel14.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -2031,7 +1986,6 @@ namespace Imajames
             ((System.ComponentModel.ISupportInitialize)(this.imageBox)).EndInit();
             this.headerPanel.ResumeLayout(false);
             this.headerPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2091,13 +2045,6 @@ namespace Imajames
         private Label label11;
         private Label label10;
         private Label label9;
-        private Panel panel9;
-        private Label label19;
-        private Label label20;
-        private Label label21;
-        private Label label22;
-        private Label label23;
-        private Label label24;
         private Panel panel7;
         private Label label14;
         private Label label16;
@@ -2190,5 +2137,8 @@ namespace Imajames
         private Label label71;
         private DataGridViewTextBoxColumn Column1;
         private DataGridViewTextBoxColumn Column2;
+        private Label label76;
+        private Label label75;
+        private Button button13;
     }
 }
