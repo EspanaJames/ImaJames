@@ -53,8 +53,12 @@ namespace Imajames
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.button13 = new System.Windows.Forms.Button();
             this.bnaButton = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.threshBar = new System.Windows.Forms.TrackBar();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -130,6 +134,8 @@ namespace Imajames
             this.button11 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.panel15 = new System.Windows.Forms.Panel();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
             this.label79 = new System.Windows.Forms.Label();
             this.label80 = new System.Windows.Forms.Label();
             this.label77 = new System.Windows.Forms.Label();
@@ -179,7 +185,6 @@ namespace Imajames
             this.imageBox = new System.Windows.Forms.PictureBox();
             this.headerPanel = new System.Windows.Forms.Panel();
             this.directorySearcher1 = new System.DirectoryServices.DirectorySearcher();
-            this.button13 = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             this.statusPanel.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -189,6 +194,7 @@ namespace Imajames
             this.panel1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.threshBar)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.panel7.SuspendLayout();
             this.tabPage4.SuspendLayout();
@@ -450,6 +456,21 @@ namespace Imajames
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "bnaPage";
             // 
+            // button13
+            // 
+            this.button13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(75)))), ((int)(((byte)(94)))));
+            this.button13.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button13.ForeColor = System.Drawing.Color.White;
+            this.button13.Location = new System.Drawing.Point(3, 602);
+            this.button13.Margin = new System.Windows.Forms.Padding(10);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(427, 128);
+            this.button13.TabIndex = 13;
+            this.button13.Text = "THRESHOLDING BLACK AND WHITE";
+            this.button13.UseVisualStyleBackColor = false;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
+            // 
             // bnaButton
             // 
             this.bnaButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(75)))), ((int)(((byte)(94)))));
@@ -467,6 +488,9 @@ namespace Imajames
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.label20);
+            this.panel4.Controls.Add(this.label19);
+            this.panel4.Controls.Add(this.threshBar);
             this.panel4.Controls.Add(this.label12);
             this.panel4.Controls.Add(this.label11);
             this.panel4.Controls.Add(this.label10);
@@ -478,6 +502,35 @@ namespace Imajames
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(427, 471);
             this.panel4.TabIndex = 11;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label20.Location = new System.Drawing.Point(273, 273);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(18, 20);
+            this.label20.TabIndex = 8;
+            this.label20.Text = "0";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label19.Location = new System.Drawing.Point(91, 273);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(109, 20);
+            this.label19.TabIndex = 7;
+            this.label19.Text = "THRESHOLD";
+            // 
+            // threshBar
+            // 
+            this.threshBar.Location = new System.Drawing.Point(32, 329);
+            this.threshBar.Maximum = 255;
+            this.threshBar.Name = "threshBar";
+            this.threshBar.Size = new System.Drawing.Size(373, 69);
+            this.threshBar.TabIndex = 6;
+            this.threshBar.Scroll += new System.EventHandler(this.threshBar_Scroll);
             // 
             // label12
             // 
@@ -1321,6 +1374,8 @@ namespace Imajames
             // 
             // panel15
             // 
+            this.panel15.Controls.Add(this.label22);
+            this.panel15.Controls.Add(this.label21);
             this.panel15.Controls.Add(this.label79);
             this.panel15.Controls.Add(this.label80);
             this.panel15.Controls.Add(this.label77);
@@ -1338,6 +1393,26 @@ namespace Imajames
             this.panel15.Name = "panel15";
             this.panel15.Size = new System.Drawing.Size(427, 526);
             this.panel15.TabIndex = 15;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label22.Location = new System.Drawing.Point(105, 284);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(18, 20);
+            this.label22.TabIndex = 17;
+            this.label22.Text = "0";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label21.Location = new System.Drawing.Point(66, 249);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(103, 20);
+            this.label21.TabIndex = 16;
+            this.label21.Text = "Y OF IMAGE";
             // 
             // label79
             // 
@@ -1363,7 +1438,7 @@ namespace Imajames
             // 
             this.label77.AutoSize = true;
             this.label77.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label77.Location = new System.Drawing.Point(105, 215);
+            this.label77.Location = new System.Drawing.Point(304, 284);
             this.label77.Name = "label77";
             this.label77.Size = new System.Drawing.Size(18, 20);
             this.label77.TabIndex = 13;
@@ -1373,7 +1448,7 @@ namespace Imajames
             // 
             this.label78.AutoSize = true;
             this.label78.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label78.Location = new System.Drawing.Point(58, 179);
+            this.label78.Location = new System.Drawing.Point(257, 249);
             this.label78.Name = "label78";
             this.label78.Size = new System.Drawing.Size(112, 20);
             this.label78.TabIndex = 12;
@@ -1383,7 +1458,7 @@ namespace Imajames
             // 
             this.label73.AutoSize = true;
             this.label73.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label73.Location = new System.Drawing.Point(305, 142);
+            this.label73.Location = new System.Drawing.Point(105, 215);
             this.label73.Name = "label73";
             this.label73.Size = new System.Drawing.Size(18, 20);
             this.label73.TabIndex = 9;
@@ -1393,11 +1468,11 @@ namespace Imajames
             // 
             this.label74.AutoSize = true;
             this.label74.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label74.Location = new System.Drawing.Point(230, 106);
+            this.label74.Location = new System.Drawing.Point(66, 179);
             this.label74.Name = "label74";
-            this.label74.Size = new System.Drawing.Size(157, 20);
+            this.label74.Size = new System.Drawing.Size(103, 20);
             this.label74.TabIndex = 8;
-            this.label74.Text = "CENTER OF IMAGE";
+            this.label74.Text = "X OF IMAGE";
             // 
             // label69
             // 
@@ -1485,7 +1560,6 @@ namespace Imajames
             this.button12.TabIndex = 19;
             this.button12.Text = "DETECT COLOR IN SHAPE";
             this.button12.UseVisualStyleBackColor = false;
-            this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
             // button6
             // 
@@ -1902,21 +1976,6 @@ namespace Imajames
             this.directorySearcher1.ServerPageTimeLimit = System.TimeSpan.Parse("-00:00:01");
             this.directorySearcher1.ServerTimeLimit = System.TimeSpan.Parse("-00:00:01");
             // 
-            // button13
-            // 
-            this.button13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(75)))), ((int)(((byte)(94)))));
-            this.button13.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button13.ForeColor = System.Drawing.Color.White;
-            this.button13.Location = new System.Drawing.Point(3, 602);
-            this.button13.Margin = new System.Windows.Forms.Padding(10);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(427, 128);
-            this.button13.TabIndex = 13;
-            this.button13.Text = "THRESHOLDING BLACK AND WHITE";
-            this.button13.UseVisualStyleBackColor = false;
-            this.button13.Click += new System.EventHandler(this.button13_Click);
-            // 
             // imageManipulator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
@@ -1947,6 +2006,7 @@ namespace Imajames
             this.tabPage2.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.threshBar)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
@@ -2140,5 +2200,10 @@ namespace Imajames
         private Label label76;
         private Label label75;
         private Button button13;
+        private Label label19;
+        private TrackBar threshBar;
+        private Label label20;
+        private Label label22;
+        private Label label21;
     }
 }

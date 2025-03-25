@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Imajames
 {
@@ -324,7 +325,8 @@ namespace Imajames
         {
             label33.Text = imageBitCounter().ToString();
             Bitmap imageHolder = new Bitmap(imageBox.Image);
-            imageBox.Image = contrastAdjuster(imageHolder, contrastBar.Value);
+            float contValue = (contrastBar.Value / 50.0f) - 1.0f;
+            imageBox.Image = contrastAdjuster(imageHolder, contValue);
         }
         public static Bitmap contrastAdjuster(Bitmap bmpContrast, float contValue)
         {
@@ -334,20 +336,23 @@ namespace Imajames
             {
                 for (cols = 0; cols < bmpContrast.Width; cols++)
                 {
-                    Color newColor = bmpContrast.GetPixel(cols, rows);
+                    Color oldColor = bmpContrast.GetPixel(cols, rows);
 
-                    //formula found online, basta subtract current color by half of 255 and multiply by contrast plus half of 255 again
-                    int newR = (int)((newColor.R - (255 / 2)) * contValue + (255 / 2));
-                    newR = Math.Min(255, Math.Max(0, newR));
-                    int newG = (int)((newColor.G - (255 / 2)) * contValue + (255 / 2));
-                    newG = Math.Min(255, Math.Max(0, newG));
-                    int newB = (int)((newColor.B - (255 / 2)) * contValue + (255 / 2));
-                    newB = Math.Min(255, Math.Max(0, newB));
+                    int newR = AdjustSingleChannelContrast(oldColor.R, contValue);
+                    int newG = AdjustSingleChannelContrast(oldColor.G, contValue);
+                    int newB = AdjustSingleChannelContrast(oldColor.B, contValue);
 
                     bmpContrast.SetPixel(cols, rows, Color.FromArgb(newR, newG, newB));
                 }
             }
+
             return bmpContrast;
+        }
+        public static int AdjustSingleChannelContrast(int colorChannelValue, float contValue)
+        {
+            int newValue = (int)((colorChannelValue - 128) * contValue + 128);
+
+            return Math.Min(255, Math.Max(0, newValue));
         }
         private void button9_Click_1(object sender, EventArgs e)
         {
@@ -727,6 +732,90 @@ namespace Imajames
             return averageLuminosity;
         }
 
+
+        //IGNORE THIS POINT FORWARD
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            int count = imageBitCounter();
+            double area = (double)count / 1000;
+            label65.Text = count.ToString();
+            label69.Text = area.ToString()+"km^2";
+            int x = 0, y = 0;
+
+            Bitmap centering = new Bitmap(imageBox.Image);
+            int width = centering.Width;
+            int height = centering.Height;
+            int centerX = width / 2;
+            int centerY = height / 2;
+
+            int radius = 2;
+
+            for (int i = centerY - radius; i <= centerY + radius; i++)
+            {
+                for (int j = centerX - radius; j <= centerX + radius; j++)
+                {
+                    double distance = Math.Sqrt(Math.Pow(i - centerY, 2) + Math.Pow(j - centerX, 2));
+
+                    if (distance <= radius)
+                    {
+                        if (i >= 0 && i < centering.Height && j >= 0 && j < centering.Width)
+                        {
+                            centering.SetPixel(j, i, Color.Red);
+                        }
+                    }
+                }
+            }
+            Bitmap bp = new Bitmap(imageBox.Image);
+            (x, y) = imageBitMiddleCounter(bp);
+
+            label73.Text = centerX.ToString();
+            label22.Text = centerY.ToString();
+            imageBox.Image = centering;
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            label7.Text = imageBitCounter().ToString();
+            Bitmap imageBoxPicture = new Bitmap(imageBox.Image);
+            int rows, cols;
+            int blackCount = 0;
+            int whiteCount = 0;
+            int thresh = threshBar.Value;
+            for (rows = 0; rows < imageBoxPicture.Width; rows++)
+            {
+                for (cols = 0; cols < imageBoxPicture.Height; cols++)
+                {
+                    Color newColor = imageBoxPicture.GetPixel(rows, cols);
+                    int threshold = (int)((newColor.R + newColor.G + newColor.B) / 3);
+                    if (threshold < thresh)
+                    {
+                        imageBoxPicture.SetPixel(rows, cols, Color.Black);
+                        blackCount++;
+                    }
+                    else
+                    {
+                        imageBoxPicture.SetPixel(rows, cols, Color.White);
+                        whiteCount++;
+                    }
+                }
+            }
+            
+            Bitmap finalImage = imageBoxPicture;
+            imageBox.Image = finalImage;
+            label11.Text = blackCount.ToString();
+            label12.Text = whiteCount.ToString();
+        }
+
+        private void threshBar_Scroll(object sender, EventArgs e)
+        {
+            label20.Text = threshBar.Value.ToString(); 
+        }
+        private void button11_Click(object sender, EventArgs e)
+        {
+            
+        }
+
         //MIDTERMS 
         public class ShapeProperties
         {
@@ -775,9 +864,9 @@ namespace Imajames
             int width = image.Width;
             int height = image.Height;
             int kernelSize = 3;
-            int offset = kernelSize / 2; 
+            int offset = kernelSize / 2;
 
-            Bitmap newImage = new Bitmap(image); 
+            Bitmap newImage = new Bitmap(image);
 
             // Loop over each pixel in the image
             for (int y = offset; y < height - offset; y++)
@@ -824,7 +913,7 @@ namespace Imajames
             int circleCount, squareCount, rectangleCount, triangleCount;
             (circleCount, squareCount, rectangleCount, triangleCount) = CountShapes(newImage);
 
-            
+
 
             label58.Text = circleCount.ToString();
             label60.Text = squareCount.ToString();
@@ -870,17 +959,17 @@ namespace Imajames
         {
             if (shapePixels.Count == 0)
             {
-                return "0, 0, 0, 0";  
+                return "0, 0, 0, 0";
             }
 
             long totalA = 0, totalR = 0, totalG = 0, totalB = 0;
-            int validPixelCount = 0; 
+            int validPixelCount = 0;
 
             foreach (var point in shapePixels)
             {
                 Color color = image.GetPixel(point.X, point.Y);
-                
-                
+
+
                 if (IsBlack(color))
                 {
                     continue;  // Ignore black pixels (or nearly black pixels)
@@ -934,7 +1023,7 @@ namespace Imajames
             }
             else
             {
-                return "Triangle";  
+                return "Triangle";
             }
         }
         private void button12_Click(object sender, EventArgs e)
@@ -1026,11 +1115,11 @@ namespace Imajames
                 if (image.GetPixel(px, py).ToArgb() == Color.Black.ToArgb())
                 {
                     visited[px, py] = true;
-                    shapePixels.Add(point);  
+                    shapePixels.Add(point);
 
-                    stack.Push(new Point(px + 1, py));  
-                    stack.Push(new Point(px - 1, py));  
-                    stack.Push(new Point(px, py + 1)); 
+                    stack.Push(new Point(px + 1, py));
+                    stack.Push(new Point(px - 1, py));
+                    stack.Push(new Point(px, py + 1));
                     stack.Push(new Point(px, py - 1));
                 }
             }
@@ -1074,122 +1163,27 @@ namespace Imajames
         {
             var neighbors = new List<Point>
     {
-        new Point(x + 1, y),  
-        new Point(x - 1, y),  
-        new Point(x, y + 1), 
-        new Point(x, y - 1)  
+        new Point(x + 1, y),
+        new Point(x - 1, y),
+        new Point(x, y + 1),
+        new Point(x, y - 1)
     };
 
             foreach (var neighbor in neighbors)
             {
                 if (!shapePixels.Contains(neighbor))
                 {
-                    return true; 
+                    return true;
                 }
             }
 
-            return false;  
+            return false;
         }
 
         private bool AreColorsSimilar(Color c1, Color c2)
         {
             return Math.Abs(c1.R - c2.R) < 20 && Math.Abs(c1.G - c2.G) < 20 && Math.Abs(c1.B - c2.B) < 20;
         }
-
-        //IGNORE THIS POINT FORWARD
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            int count = imageBitCounter();
-            double area = (double)count / 1000;
-            label65.Text = count.ToString();
-            label69.Text = area.ToString()+"km^2";
-            int x = 0, y = 0;
-
-            Bitmap centering = new Bitmap(imageBox.Image);
-            int width = centering.Width;
-            int height = centering.Height;
-            int centerX = width / 2;
-            int centerY = height / 2;
-
-            int radius = 2;
-
-            for (int i = centerY - radius; i <= centerY + radius; i++)
-            {
-                for (int j = centerX - radius; j <= centerX + radius; j++)
-                {
-                    double distance = Math.Sqrt(Math.Pow(i - centerY, 2) + Math.Pow(j - centerX, 2));
-
-                    if (distance <= radius)
-                    {
-                        if (i >= 0 && i < centering.Height && j >= 0 && j < centering.Width)
-                        {
-                            centering.SetPixel(j, i, Color.Red);
-                        }
-                    }
-                }
-            }
-            imageBox.Image = centering;
-        }
-
-        private void button13_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button11_Click(object sender, EventArgs e)
-        {
-            Bitmap image = new Bitmap(imageBox.Image);
-            int width = image.Width;
-            int height = image.Height;
-            int kernelSize = 3; 
-            int offset = kernelSize / 2; 
-
-            Bitmap newImage = new Bitmap(image);
-            for (int y = offset; y < height - offset; y++)
-            {
-                for (int x = offset; x < width - offset; x++)
-                {
-                    Color centerColor = image.GetPixel(x, y);
-                    bool allPixelsSimilar = true;
-
-                    for (int ky = -offset; ky <= offset; ky++)
-                    {
-                        for (int kx = -offset; kx <= offset; kx++)
-                        {
-                            Color neighborColor = image.GetPixel(x + kx, y + ky);
-
-                            if (!AreColorsSimilar(centerColor, neighborColor))
-                            {
-                                allPixelsSimilar = false;
-                                break;
-                            }
-                        }
-                        if (!allPixelsSimilar)
-                        {
-                            break;
-                        }
-                    }
-
-                    if (!allPixelsSimilar)
-                    {
-                        for (int ky = -offset; ky <= offset; ky++)
-                        {
-                            for (int kx = -offset; kx <= offset; kx++)
-                            {
-                                newImage.SetPixel(x + kx, y + ky, Color.Black);
-                            }
-                        }
-                    }
-                }
-            }
-            int circleCount, squareCount, rectangleCount, triangleCount;
-            (circleCount, squareCount, rectangleCount, triangleCount) = CountShapes(newImage);
-            label67.Text = (squareCount + circleCount + rectangleCount + triangleCount).ToString();
-
-        }
-
-       
     }
 }
     
