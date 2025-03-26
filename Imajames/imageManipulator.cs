@@ -17,7 +17,7 @@ namespace Imajames
     {
         public Bitmap usedImage;
         public Color pointColor;
-        public int imageX=0,imageY=0;
+        public int imageX = 0, imageY = 0;
         public imageManipulator()
         {
             InitializeComponent();
@@ -27,14 +27,14 @@ namespace Imajames
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            
+
             if (imageBox.Image != null)
             {
                 MouseEventArgs me = (MouseEventArgs)e;
                 Bitmap tempImg = (Bitmap)imageBox.Image;
                 if (tempImg != null)
                 {
-                    
+
                     float scaleX = (float)tempImg.Width / imageBox.Width;
                     float scaleY = (float)tempImg.Height / imageBox.Height;
 
@@ -564,9 +564,9 @@ namespace Imajames
         }
         private static (int, int) imageBitMiddleCounter(Bitmap bmp)
         {
-            
+
             int x, y;
-            int xCount=0, yCount=0;
+            int xCount = 0, yCount = 0;
             for (x = 0; x < bmp.Width; x++)
             {
                 xCount++;
@@ -740,7 +740,7 @@ namespace Imajames
             int count = imageBitCounter();
             double area = (double)count / 1000;
             label65.Text = count.ToString();
-            label69.Text = area.ToString()+"km^2";
+            label69.Text = area.ToString() + "km^2";
             int x = 0, y = 0;
 
             Bitmap centering = new Bitmap(imageBox.Image);
@@ -800,7 +800,7 @@ namespace Imajames
                     }
                 }
             }
-            
+
             Bitmap finalImage = imageBoxPicture;
             imageBox.Image = finalImage;
             label11.Text = blackCount.ToString();
@@ -809,11 +809,11 @@ namespace Imajames
 
         private void threshBar_Scroll(object sender, EventArgs e)
         {
-            label20.Text = threshBar.Value.ToString(); 
+            label20.Text = threshBar.Value.ToString();
         }
         private void button11_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         //MIDTERMS 
@@ -826,7 +826,6 @@ namespace Imajames
             public int Perimeter { get; set; }
             public Rectangle BoundingBox { get; set; }
         }
-
         private Dictionary<string, int> CountColors(Bitmap image)
         {
             int width = image.Width;
@@ -912,23 +911,23 @@ namespace Imajames
 
             dataGridView2.Rows.Clear();
 
+            // Clear previous rows in dataGridView1
+            dataGridView1.Rows.Clear();
+
             for (int i = 0; i < shapeColors.Count; i++)
             {
                 string shapeNumber = (i + 1).ToString();
                 string shapeType = shapeColors[i].shapeType;
 
+                // Add shape number and type to dataGridView2
                 dataGridView2.Rows.Add(shapeNumber, shapeType);
 
+                // Draw the shape number on the image
                 DrawShapeNumberOnImage(newImage, shapeColors[i].boundingBox, i + 1);
-            }
 
-            dataGridView1.Rows.Clear(); // Reset the color grid
-
-            foreach (var shapeColor in shapeColors)
-            {
-                string shapeNumber = (shapeColors.IndexOf(shapeColor) + 1).ToString();
-                string generalizedColor = shapeColor.generalizedColor;
-                dataGridView1.Rows.Add(shapeNumber, generalizedColor);
+                // Add the shape number and generalized color to dataGridView1
+                string generalizedColor = shapeColors[i].generalizedColor;
+                dataGridView1.Rows.Add($"Shape Number {shapeNumber}", generalizedColor);
             }
 
             imageBox.Image = newImage;
@@ -977,6 +976,30 @@ namespace Imajames
             return shapeColors;
         }
 
+        private string DetermineShapeType(ShapeProperties shape)
+        {
+            // Check for Square (Aspect ratio close to 1, and equal width and height)
+            if (shape.AspectRatio > 0.9 && shape.AspectRatio < 1.1 && shape.Width == shape.Height)
+            {
+                return "Square";
+            }
+            // Check for Circle (Aspect ratio close to 1)
+            else if (shape.AspectRatio > 0.9 && shape.AspectRatio < 1.1)
+            {
+                return "Circle";
+            }
+            // Check for Rectangle (Aspect ratio not close to 1, and unequal sides)
+            else if (shape.Width != shape.Height)
+            {
+                return "Rectangle";
+            }
+            else
+            {
+                // If none of the above, consider it a Triangle or an unknown shape
+                return "Triangle";
+            }
+        }
+
         private string GetAverageArgbColor(List<Point> shapePixels, Bitmap image)
         {
             if (shapePixels.Count == 0)
@@ -1016,62 +1039,6 @@ namespace Imajames
             return $"{avgA}, {avgR}, {avgG}, {avgB}"; // Return the average ARGB color
         }
 
-        private string DetermineShapeType(ShapeProperties shape)
-        {
-            if (shape.AspectRatio > 0.9 && shape.AspectRatio < 1.1 && shape.Width == shape.Height)
-            {
-                return "Square";
-            }
-            else if (shape.AspectRatio > 0.9 && shape.AspectRatio < 1.1)
-            {
-                return "Circle";
-            }
-            else if (shape.Width != shape.Height)
-            {
-                return "Rectangle";
-            }
-            else
-            {
-                return "Triangle";
-            }
-        }
-        private bool IsBlack(Color color)
-        {
-            return color.R == 0 && color.G == 0 && color.B == 0;
-        }
-        private void FloodFillAndRecord(Bitmap image, int x, int y, bool[,] visited, List<Point> shapePixels)
-        {
-            int width = image.Width;
-            int height = image.Height;
-
-            Stack<Point> stack = new Stack<Point>();
-            stack.Push(new Point(x, y));  // Start the flood fill from the initial point.
-
-            // While there are points in the stack
-            while (stack.Count > 0)
-            {
-                Point point = stack.Pop();
-                int px = point.X;
-                int py = point.Y;
-
-                if (px < 0 || py < 0 || px >= width || py >= height || visited[px, py])
-                {
-                    continue;
-                }
-
-                if (image.GetPixel(px, py).ToArgb() == Color.Black.ToArgb())
-                {
-                    visited[px, py] = true;
-                    shapePixels.Add(point);
-
-                    stack.Push(new Point(px + 1, py));
-                    stack.Push(new Point(px - 1, py));
-                    stack.Push(new Point(px, py + 1));
-                    stack.Push(new Point(px, py - 1));
-                }
-            }
-        }
-
         private ShapeProperties ExtractShapeFeatures(List<Point> shapePixels)
         {
             int minX = shapePixels.Min(p => p.X);
@@ -1109,12 +1076,12 @@ namespace Imajames
         private bool IsEdgePixel(int x, int y, List<Point> shapePixels)
         {
             var neighbors = new List<Point>
-{
-    new Point(x + 1, y),
-    new Point(x - 1, y),
-    new Point(x, y + 1),
-    new Point(x, y - 1)
-};
+        {
+            new Point(x + 1, y),
+            new Point(x - 1, y),
+            new Point(x, y + 1),
+            new Point(x, y - 1)
+        };
 
             foreach (var neighbor in neighbors)
             {
@@ -1153,7 +1120,44 @@ namespace Imajames
             }
         }
 
+        private bool IsBlack(Color color)
+        {
+            return color.R == 0 && color.G == 0 && color.B == 0;
+        }
 
+        private void FloodFillAndRecord(Bitmap image, int x, int y, bool[,] visited, List<Point> shapePixels)
+        {
+            int width = image.Width;
+            int height = image.Height;
+
+            Stack<Point> stack = new Stack<Point>();
+            stack.Push(new Point(x, y));  // Start the flood fill from the initial point.
+
+            // While there are points in the stack
+            while (stack.Count > 0)
+            {
+                Point point = stack.Pop();
+                int px = point.X;
+                int py = point.Y;
+
+                if (px < 0 || py < 0 || px >= width || py >= height || visited[px, py])
+                {
+                    continue;
+                }
+
+                if (image.GetPixel(px, py).ToArgb() == Color.Black.ToArgb())
+                {
+                    visited[px, py] = true;
+                    shapePixels.Add(point);
+
+                    stack.Push(new Point(px + 1, py));
+                    stack.Push(new Point(px - 1, py));
+                    stack.Push(new Point(px, py + 1));
+                    stack.Push(new Point(px, py - 1));
+                }
+            }
+        }
     }
 }
-    
+
+
