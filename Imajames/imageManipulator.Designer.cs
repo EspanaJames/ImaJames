@@ -155,18 +155,6 @@ namespace Imajames
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label72 = new System.Windows.Forms.Label();
-            this.label71 = new System.Windows.Forms.Label();
-            this.label64 = new System.Windows.Forms.Label();
-            this.label55 = new System.Windows.Forms.Label();
-            this.label56 = new System.Windows.Forms.Label();
-            this.label63 = new System.Windows.Forms.Label();
-            this.label57 = new System.Windows.Forms.Label();
-            this.label62 = new System.Windows.Forms.Label();
-            this.label58 = new System.Windows.Forms.Label();
-            this.label61 = new System.Windows.Forms.Label();
-            this.label59 = new System.Windows.Forms.Label();
-            this.label60 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -185,6 +173,9 @@ namespace Imajames
             this.imageBox = new System.Windows.Forms.PictureBox();
             this.headerPanel = new System.Windows.Forms.Panel();
             this.directorySearcher1 = new System.DirectoryServices.DirectorySearcher();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip.SuspendLayout();
             this.statusPanel.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -224,6 +215,7 @@ namespace Imajames
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageBox)).BeginInit();
             this.headerPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -347,7 +339,7 @@ namespace Imajames
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.toolControl);
             this.panel3.Controls.Add(this.panel8);
-            this.panel3.Location = new System.Drawing.Point(1455, 32);
+            this.panel3.Location = new System.Drawing.Point(1455, 29);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(443, 857);
             this.panel3.TabIndex = 1;
@@ -1560,6 +1552,7 @@ namespace Imajames
             this.button12.TabIndex = 19;
             this.button12.Text = "DETECT COLOR IN SHAPE";
             this.button12.UseVisualStyleBackColor = false;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
             // button6
             // 
@@ -1578,19 +1571,8 @@ namespace Imajames
             // 
             // panel14
             // 
+            this.panel14.Controls.Add(this.dataGridView2);
             this.panel14.Controls.Add(this.dataGridView1);
-            this.panel14.Controls.Add(this.label72);
-            this.panel14.Controls.Add(this.label71);
-            this.panel14.Controls.Add(this.label64);
-            this.panel14.Controls.Add(this.label55);
-            this.panel14.Controls.Add(this.label56);
-            this.panel14.Controls.Add(this.label63);
-            this.panel14.Controls.Add(this.label57);
-            this.panel14.Controls.Add(this.label62);
-            this.panel14.Controls.Add(this.label58);
-            this.panel14.Controls.Add(this.label61);
-            this.panel14.Controls.Add(this.label59);
-            this.panel14.Controls.Add(this.label60);
             this.panel14.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel14.Location = new System.Drawing.Point(3, 3);
             this.panel14.Name = "panel14";
@@ -1606,11 +1588,11 @@ namespace Imajames
             this.Column2});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ButtonFace;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 310);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 263);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(427, 216);
+            this.dataGridView1.Size = new System.Drawing.Size(427, 263);
             this.dataGridView1.TabIndex = 0;
             // 
             // Column1
@@ -1627,126 +1609,6 @@ namespace Imajames
             this.Column2.MinimumWidth = 8;
             this.Column2.Name = "Column2";
             this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // label72
-            // 
-            this.label72.AutoSize = true;
-            this.label72.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label72.Location = new System.Drawing.Point(295, 284);
-            this.label72.Name = "label72";
-            this.label72.Size = new System.Drawing.Size(56, 20);
-            this.label72.TabIndex = 12;
-            this.label72.Text = "ARGB";
-            // 
-            // label71
-            // 
-            this.label71.AutoSize = true;
-            this.label71.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label71.Location = new System.Drawing.Point(60, 284);
-            this.label71.Name = "label71";
-            this.label71.Size = new System.Drawing.Size(95, 20);
-            this.label71.TabIndex = 11;
-            this.label71.Text = "SHAPE NO.";
-            // 
-            // label64
-            // 
-            this.label64.AutoSize = true;
-            this.label64.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label64.Location = new System.Drawing.Point(89, 210);
-            this.label64.Name = "label64";
-            this.label64.Size = new System.Drawing.Size(18, 20);
-            this.label64.TabIndex = 9;
-            this.label64.Text = "0";
-            // 
-            // label55
-            // 
-            this.label55.AutoSize = true;
-            this.label55.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label55.Location = new System.Drawing.Point(89, 64);
-            this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(18, 20);
-            this.label55.TabIndex = 1;
-            this.label55.Text = "0";
-            // 
-            // label56
-            // 
-            this.label56.AutoSize = true;
-            this.label56.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label56.Location = new System.Drawing.Point(14, 28);
-            this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(166, 20);
-            this.label56.TabIndex = 0;
-            this.label56.Text = "NUMBER OF PIXELS";
-            // 
-            // label63
-            // 
-            this.label63.AutoSize = true;
-            this.label63.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label63.Location = new System.Drawing.Point(14, 179);
-            this.label63.Name = "label63";
-            this.label63.Size = new System.Drawing.Size(218, 20);
-            this.label63.TabIndex = 8;
-            this.label63.Text = "NUMBER OF RECTANGLES";
-            // 
-            // label57
-            // 
-            this.label57.AutoSize = true;
-            this.label57.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label57.Location = new System.Drawing.Point(223, 28);
-            this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(179, 20);
-            this.label57.TabIndex = 2;
-            this.label57.Text = "NUMBER OF CIRCLES";
-            // 
-            // label62
-            // 
-            this.label62.AutoSize = true;
-            this.label62.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label62.Location = new System.Drawing.Point(295, 143);
-            this.label62.Name = "label62";
-            this.label62.Size = new System.Drawing.Size(18, 20);
-            this.label62.TabIndex = 7;
-            this.label62.Text = "0";
-            // 
-            // label58
-            // 
-            this.label58.AutoSize = true;
-            this.label58.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label58.Location = new System.Drawing.Point(298, 65);
-            this.label58.Name = "label58";
-            this.label58.Size = new System.Drawing.Size(18, 20);
-            this.label58.TabIndex = 3;
-            this.label58.Text = "0";
-            // 
-            // label61
-            // 
-            this.label61.AutoSize = true;
-            this.label61.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label61.Location = new System.Drawing.Point(220, 106);
-            this.label61.Name = "label61";
-            this.label61.Size = new System.Drawing.Size(201, 20);
-            this.label61.TabIndex = 6;
-            this.label61.Text = "NUMBER OF TRIANGLES";
-            // 
-            // label59
-            // 
-            this.label59.AutoSize = true;
-            this.label59.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label59.Location = new System.Drawing.Point(14, 106);
-            this.label59.Name = "label59";
-            this.label59.Size = new System.Drawing.Size(189, 20);
-            this.label59.TabIndex = 4;
-            this.label59.Text = "NUMBER OF SQUARES";
-            // 
-            // label60
-            // 
-            this.label60.AutoSize = true;
-            this.label60.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label60.Location = new System.Drawing.Point(89, 141);
-            this.label60.Name = "label60";
-            this.label60.Size = new System.Drawing.Size(18, 20);
-            this.label60.TabIndex = 5;
-            this.label60.Text = "0";
             // 
             // panel8
             // 
@@ -1976,6 +1838,37 @@ namespace Imajames
             this.directorySearcher1.ServerPageTimeLimit = System.TimeSpan.Parse("-00:00:01");
             this.directorySearcher1.ServerTimeLimit = System.TimeSpan.Parse("-00:00:01");
             // 
+            // dataGridView2
+            // 
+            this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2});
+            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dataGridView2.GridColor = System.Drawing.SystemColors.ButtonFace;
+            this.dataGridView2.Location = new System.Drawing.Point(0, -6);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.RowHeadersWidth = 62;
+            this.dataGridView2.RowTemplate.Height = 28;
+            this.dataGridView2.Size = new System.Drawing.Size(427, 269);
+            this.dataGridView2.TabIndex = 1;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn1.HeaderText = "SHAPE NO.";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 8;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn2.HeaderText = "SHAPE";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 8;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
             // imageManipulator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
@@ -2035,7 +1928,6 @@ namespace Imajames
             this.panel15.PerformLayout();
             this.detectionPage.ResumeLayout(false);
             this.panel14.ResumeLayout(false);
-            this.panel14.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
@@ -2046,6 +1938,7 @@ namespace Imajames
             ((System.ComponentModel.ISupportInitialize)(this.imageBox)).EndInit();
             this.headerPanel.ResumeLayout(false);
             this.headerPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2166,16 +2059,6 @@ namespace Imajames
         private Button button4;
         private Button button6;
         private Panel panel14;
-        private Label label55;
-        private Label label56;
-        private Label label64;
-        private Label label63;
-        private Label label62;
-        private Label label61;
-        private Label label60;
-        private Label label59;
-        private Label label58;
-        private Label label57;
         private Button button11;
         private Button button5;
         private Panel panel15;
@@ -2193,8 +2076,6 @@ namespace Imajames
         private Label label70;
         private Button button12;
         private DataGridView dataGridView1;
-        private Label label72;
-        private Label label71;
         private DataGridViewTextBoxColumn Column1;
         private DataGridViewTextBoxColumn Column2;
         private Label label76;
@@ -2205,5 +2086,8 @@ namespace Imajames
         private Label label20;
         private Label label22;
         private Label label21;
+        private DataGridView dataGridView2;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
     }
 }
